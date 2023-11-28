@@ -183,4 +183,12 @@ public class Board{
             System.out.println();
         }
     }
+
+    public Tile[][] getTileBoard() {
+        return tileBoard;
+    }
+
+    public ShipPart[][] getShipBoard() {
+        return shipBoard;
+    }
 }
