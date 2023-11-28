@@ -1,9 +1,9 @@
-package battleship.boardLogic;
+package com.fosanzdev.battleship.boardLogic;
 
-import battleship.gameLogic.Hit;
-import battleship.shipLogic.Orientation;
-import battleship.shipLogic.ShipPart;
-import battleship.shipLogic.VShip;
+import com.fosanzdev.battleship.gameLogic.Hit;
+import com.fosanzdev.battleship.shipLogic.Orientation;
+import com.fosanzdev.battleship.shipLogic.ShipPart;
+import com.fosanzdev.battleship.shipLogic.VShip;
 
 import java.util.ArrayList;
 

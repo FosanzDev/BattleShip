@@ -1,4 +1,4 @@
-package battleship.shipLogic;
+package com.fosanzdev.battleship.shipLogic;
 
 public class VShip{
     private final int area;

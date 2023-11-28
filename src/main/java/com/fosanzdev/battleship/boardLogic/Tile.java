@@ -1,4 +1,4 @@
-package battleship.boardLogic;
+package com.fosanzdev.battleship.boardLogic;
 
 public enum Tile {
     WATER,

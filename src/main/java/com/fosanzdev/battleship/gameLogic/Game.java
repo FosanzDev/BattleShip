@@ -1,21 +1,21 @@
-package battleship.gameLogic;
+package com.fosanzdev.battleship.gameLogic;
 
-import battleship.boardLogic.Board;
-import battleship.boardLogic.BoardBuilder;
-import battleship.playerLogic.Player;
+import com.fosanzdev.battleship.boardLogic.Board;
+import com.fosanzdev.battleship.boardLogic.BoardBuilder;
+import com.fosanzdev.battleship.playerLogic.BSPlayer;
 
 public class Game {
 
     private static final int BOARD_SIZE = 8;
     private static final int[] SHIPS = new int[] {2, 3, 3, 4, 5};
 
-    private Player player1;
-    private Player player2;
-
     private Board board1;
     private Board board2;
 
-    public Game(Player player1, Player player2) {
+    private BSPlayer player1;
+    private BSPlayer player2;
+
+    public Game(BSPlayer player1, BSPlayer player2) {
         this.player1 = player1;
         this.player2 = player2;
 
@@ -23,9 +23,7 @@ public class Game {
         board2 = BoardBuilder.buildRandomBoard(SHIPS, BOARD_SIZE, BOARD_SIZE);
     }
 
-    public Game(Player player1, Player player2, Board board1, Board board2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Game(BSPlayer player1, BSPlayer player2, Board board1, Board board2) {
         this.board1 = board1;
         this.board2 = board2;
     }
@@ -41,7 +39,7 @@ public class Game {
             if (turn){
                 System.out.println("Player 1 turn");
                 //Get hit from player1
-                Hit hit = player1.getHit();
+                Hit hit = player1.play();
                 //Hit player2 board
                 board2.hit(hit);
                 //Check if all ships are sunk
@@ -51,7 +49,7 @@ public class Game {
             }
             else {
                 System.out.println("Player 2 turn");
-                Hit hit = player2.getHit();
+                Hit hit = player2.play();
                 board1.hit(hit);
                 allSunk = board1.allSunk();
                 turn = true;

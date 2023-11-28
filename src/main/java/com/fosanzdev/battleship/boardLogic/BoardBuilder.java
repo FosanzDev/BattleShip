@@ -1,7 +1,7 @@
-package battleship.boardLogic;
+package com.fosanzdev.battleship.boardLogic;
 
-import battleship.shipLogic.Orientation;
-import battleship.shipLogic.VShip;
+import com.fosanzdev.battleship.shipLogic.Orientation;
+import com.fosanzdev.battleship.shipLogic.VShip;
 
 public class BoardBuilder {
 

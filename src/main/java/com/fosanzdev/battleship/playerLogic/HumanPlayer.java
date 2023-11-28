@@ -1,17 +1,16 @@
-package battleship.playerLogic;
+package com.fosanzdev.battleship.playerLogic;
 
-import battleship.gameLogic.Hit;
+import com.fosanzdev.battleship.gameLogic.Hit;
 
 import java.util.Scanner;
 
-public class HumanPlayer extends Player {
+public class HumanPlayer implements BSPlayer {
 
-    public HumanPlayer(String name) {
-        super(name);
+    public HumanPlayer(){
+
     }
 
-    @Override
-    public Hit getHit() {
+    public Hit play() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter coordinates to hit: ");
         String input = scanner.nextLine();

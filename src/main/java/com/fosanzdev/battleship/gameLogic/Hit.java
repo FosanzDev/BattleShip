@@ -1,4 +1,4 @@
-package battleship.gameLogic;
+package com.fosanzdev.battleship.gameLogic;
 
 public class Hit {
     private int x;
