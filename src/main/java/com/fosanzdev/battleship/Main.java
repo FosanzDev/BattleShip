@@ -1,9 +1,6 @@
 package com.fosanzdev.battleship;
 
 import com.fosanzdev.battleship.boardLogic.Board;
-import com.fosanzdev.battleship.gameLogic.Game;
-import com.fosanzdev.battleship.playerLogic.HumanPlayer;
-import com.fosanzdev.battleship.playerLogic.BSPlayer;
 
 import java.sql.SQLOutput;
 
