@@ -4,9 +4,11 @@ public class ShipPart {
 
     private boolean hit = false;
     private VShip ship;
+    private int shipIndex;
 
-    public ShipPart(VShip ship) {
+    public ShipPart(VShip ship, int shipIndex) {
         this.ship = ship;
+        this.shipIndex = shipIndex;
     }
 
     public boolean isHit() {
@@ -22,7 +24,7 @@ public class ShipPart {
         return ship;
     }
 
-    public void setShip(VShip ship) {
-        this.ship = ship;
+    public int getShipIndex() {
+        return shipIndex;
     }
 }

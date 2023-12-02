@@ -9,7 +9,7 @@ public class VShip{
         this.area = area;
         this.parts = new ShipPart[area];
         for (int i = 0; i < area; i++) {
-            this.parts[i] = new ShipPart(this);
+            this.parts[i] = new ShipPart(this, i);
         }
         this.orientation = orientation;
     }
@@ -32,7 +32,7 @@ public class VShip{
         sunk = true;
     }
 
-    public ShipPart getPart(int i) {
+    public ShipPart getShipPart(int i) {
         return parts[i];
     }
 
