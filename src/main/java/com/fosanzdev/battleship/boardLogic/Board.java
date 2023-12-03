@@ -9,6 +9,14 @@ import java.util.ArrayList;
 
 public class Board{
 
+    public interface BoardListener {
+        void onHit(Hit hit);
+        void onMiss(Hit hit);
+        void onSunk(VShip ship);
+        void onAllSunk();
+    }
+
+
     //List all the ships
     private ArrayList<VShip> ships;
 
@@ -17,6 +25,7 @@ public class Board{
 
     //List all the tiles/hits in the board (water, ship, hit, miss)
     private Tile[][] tileBoard;
+    private BoardListener listener;
 
     public Board(int xSize, int ySize) {
         this.ships = new ArrayList<>();
@@ -27,6 +36,10 @@ public class Board{
                 tileBoard[i][j] = Tile.WATER;
             }
         }
+    }
+
+    public void setListener(BoardListener listener) {
+        this.listener = listener;
     }
 
     /**
@@ -134,6 +147,8 @@ public class Board{
     public boolean hit(Hit hit) {
         Tile tile = tileBoard[hit.getX()][hit.getY()];
         if (tile == Tile.SHIP) {
+            assert listener != null;
+            listener.onHit(hit);
             //Identify the ship
             ShipPart part = shipBoard[hit.getX()][hit.getY()];
             VShip ship = part.getShip();
@@ -143,7 +158,13 @@ public class Board{
 
             //Check if the ship is sunk
             if (ship.isSunk()) {
+                //Notify the listener
+                assert listener != null;
+                listener.onSunk(ship);
                 ships.remove(ship);
+                if (allSunk()){
+                    listener.onAllSunk();
+                }
             }
 
             //Change the tile to HIT
@@ -151,6 +172,8 @@ public class Board{
             return true;
         }
         else if (tile == Tile.WATER) {
+            assert listener != null;
+            listener.onMiss(hit);
             tileBoard[hit.getX()][hit.getY()] = Tile.MISS;
             return false;
         }
