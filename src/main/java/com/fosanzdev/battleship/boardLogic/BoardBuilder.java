@@ -13,9 +13,9 @@ public class BoardBuilder {
             boolean placed = false;
             int iterations = 0;
             while (!placed && iterations < MAX_ITERATIONS) {
-                //Random coordinates and orientation
-                int x = (int) (Math.random() * 10);
-                int y = (int) (Math.random() * 10);
+                //Random coordinates and orientation from 0 to size
+                int x = (int) (Math.random() * sizeX);
+                int y = (int) (Math.random() * sizeY);
                 Orientation orientation = Orientation.values()[(int) (Math.random() * 4)];
 
                 //Create ship and try to place it
