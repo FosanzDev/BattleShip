@@ -12,7 +12,7 @@ public class Board{
     public interface BoardListener {
         void onHit(Hit hit);
         void onMiss(Hit hit);
-        void onSunk(VShip ship);
+        void onSunk(Hit[] hits);
         void onAllSunk();
     }
 
@@ -52,11 +52,11 @@ public class Board{
      * @param y Y coordinate
      */
     public boolean addShip(VShip vship, int x, int y) {
-        //Add the ship to the list of ships
-        ships.add(vship);
-
         //Check if the ship can be placed
         if (checkCollision(vship, x, y)) {
+
+            //Add the ship to the list of ships
+            ships.add(vship);
 
             //if it can, add it to the collisionBoard
             int area = vship.getArea();
@@ -64,24 +64,28 @@ public class Board{
             if (orientation == Orientation.E) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x][y + i] = vship.getShipPart(i);
+                    vship.addHit(x, y - i, i);
                     tileBoard[x][y + i] = Tile.SHIP;
                 }
             }
             else if (orientation == Orientation.W) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x][y - i] = vship.getShipPart(i);
+                    vship.addHit(x, y - i, i);
                     tileBoard[x][y - i] = Tile.SHIP;
                 }
             }
             else if (orientation == Orientation.N) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x - i][y] = vship.getShipPart(i);
+                    vship.addHit(x, y - i, i);
                     tileBoard[x - i][y] = Tile.SHIP;
                 }
             }
             else if (orientation == Orientation.S) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x + i][y] = vship.getShipPart(i);
+                    vship.addHit(x, y - i, i);
                     tileBoard[x + i][y] = Tile.SHIP;
                 }
             }
@@ -160,7 +164,7 @@ public class Board{
             if (ship.isSunk()) {
                 //Notify the listener
                 assert listener != null;
-                listener.onSunk(ship);
+                listener.onSunk(ship.getHits());
                 ships.remove(ship);
                 if (allSunk()){
                     listener.onAllSunk();
