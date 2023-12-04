@@ -64,7 +64,7 @@ public class Board{
             if (orientation == Orientation.E) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x][y + i] = vship.getShipPart(i);
-                    vship.addHit(x, y - i, i);
+                    vship.addHit(x, y + i, i);
                     tileBoard[x][y + i] = Tile.SHIP;
                 }
             }
@@ -78,14 +78,14 @@ public class Board{
             else if (orientation == Orientation.N) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x - i][y] = vship.getShipPart(i);
-                    vship.addHit(x, y - i, i);
+                    vship.addHit(x - i, y, i);
                     tileBoard[x - i][y] = Tile.SHIP;
                 }
             }
             else if (orientation == Orientation.S) {
                 for (int i = 0; i < area; i++) {
                     shipBoard[x + i][y] = vship.getShipPart(i);
-                    vship.addHit(x, y - i, i);
+                    vship.addHit(x + i, y, i);
                     tileBoard[x + i][y] = Tile.SHIP;
                 }
             }
