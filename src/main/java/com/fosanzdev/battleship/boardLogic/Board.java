@@ -151,8 +151,8 @@ public class Board{
     public boolean hit(Hit hit) {
         Tile tile = tileBoard[hit.getX()][hit.getY()];
         if (tile == Tile.SHIP) {
-            assert listener != null;
-            listener.onHit(hit);
+            if(listener != null)
+                listener.onHit(hit);
             //Identify the ship
             ShipPart part = shipBoard[hit.getX()][hit.getY()];
             VShip ship = part.getShip();
@@ -163,8 +163,8 @@ public class Board{
             //Check if the ship is sunk
             if (ship.isSunk()) {
                 //Notify the listener
-                assert listener != null;
-                listener.onSunk(ship.getHits());
+                if(listener != null)
+                    listener.onSunk(ship.getHits());
                 ships.remove(ship);
                 if (allSunk()){
                     listener.onAllSunk();
@@ -176,8 +176,8 @@ public class Board{
             return true;
         }
         else if (tile == Tile.WATER) {
-            assert listener != null;
-            listener.onMiss(hit);
+            if(listener != null)
+                listener.onMiss(hit);
             tileBoard[hit.getX()][hit.getY()] = Tile.MISS;
             return false;
         }
