@@ -158,13 +158,16 @@ public class Board{
             VShip ship = part.getShip();
 
             //Hit the ship
-            shipBoard[hit.getX()][hit.getY()].hit();
+            part.hit();
 
             //Check if the ship is sunk
             if (ship.isSunk()) {
+                System.out.println("Ship sunk detected from board");
                 //Notify the listener
                 if(listener != null)
                     listener.onSunk(ship.getHits());
+                else
+                    System.out.println("Listener is null");
                 ships.remove(ship);
                 if (allSunk()){
                     listener.onAllSunk();

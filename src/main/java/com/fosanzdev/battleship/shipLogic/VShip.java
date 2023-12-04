@@ -28,11 +28,9 @@ public class VShip{
 
     public void notifyHit() {
         for (int i = 0; i < area; i++) {
-            if (!parts[i].isHit()) {
+            if (!parts[i].isHit())
                 return;
-            }
         }
-        System.out.println("Ship sunk");
         sunk = true;
     }
 
